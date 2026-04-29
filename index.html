@@ -99,6 +99,10 @@
   .container { width:100%; max-width: 1240px; margin: 0 auto; padding: 0 32px; }
   @media (max-width: 720px) { .container { padding: 0 20px; } }
 
+  /* スマホでだけ表示する改行ヘルパー */
+  .mobile-only-break { display: none; }
+  @media (max-width: 720px) { .mobile-only-break { display: block; } }
+
   .mono { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; }
   .hand { font-family: var(--f-hand); font-weight: 700; }
   .hand-jp { font-family: var(--f-hand-jp); font-weight: 400; }
@@ -376,7 +380,7 @@ function Concept() {
         <div style={{ textAlign: 'center', marginBottom: 64 }}>
           <div className="section-eyebrow">Concept</div>
           <h2 className="display-jp h2-big" style={{ fontSize: 'clamp(36px, 4.8vw, 64px)', margin: 0 }}>
-            走りたいも、つながりたいも、<br />
+            走りたいも、<span className="mobile-only-break" />つながりたいも、<br />
             <span style={{ color: 'var(--sky-deep)' }}>ぜんぶOK。</span>
           </h2>
           <p style={{ fontSize: 18, color: 'var(--ink-dim)', maxWidth: 640, margin: '24px auto 0', lineHeight: 1.95 }}>
@@ -535,7 +539,7 @@ function Events() {
     tag: 'Weekly',
     title: 'カフェ会 · ラン後交流',
     when: '月１回 · ランとセット',
-    body: '走るだけじゃなくて、ちゃんと話せる時間も。キャリア諘、趣味の話、トレーニングの悩み・・・ゆっくり。',
+    body: '走るだけじゃなくて、ちゃんと話せる時間も。キャリアのお話、趣味の話、トレーニングの悩み・・・ゆっくり。',
     img: 'カフェで一息',
     src: 'assets/photos/event-monthly-cafe.jpeg',
     pos: 'center 50%',

@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AdStep｜皇居ランニングコミュニティ｜土曜朝7時・初心者歓迎の朝活ラン</title>
+<meta name="description" content="AdStep（アドステップ）は、毎週土曜の朝7時に皇居外周を走る東京のランニングコミュニティ。社会人・大学生・初心者・女性ひとり参加、すべて歓迎。皇居ラン約5km＋ラン後カフェ、マラソン大会、懇親会など、走るたびにつながる仲間が見つかります。">
+<meta name="keywords" content="皇居ラン,皇居ランニング,皇居ランニングコミュニティ,ランニングサークル 東京,朝活ラン,ランニング 初心者,皇居 5km,社会人サークル,大学生 サークル,AdStep">
+<link rel="canonical" href="https://adstep.tokyo/">
+<meta property="og:title" content="AdStep｜皇居ランニングコミュニティ">
+<meta property="og:description" content="毎週土曜の朝7時、皇居から走りはじめる東京の朝活ランコミュニティ。初心者・女性ひとり参加もOK。マラソン大会・懇親会も開催中。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://adstep.tokyo/">
+<meta property="og:image" content="assets/og-image.jpg">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsClub",
+  "name": "AdStep",
+  "alternateName": "アドステップ",
+  "description": "毎週土曜の朝7時、皇居外周を走る東京のランニングコミュニティ。初心者・社会人・大学生歓迎。",
+  "url": "https://adstep.tokyo/",
+  "sport": "Running",
+  "location": {
+    "@type": "Place",
+    "name": "スターバックスコーヒー 皇居外苑 和田倉噴水公園店",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "皇居外苑3",
+      "addressLocality": "千代田区",
+      "addressRegion": "東京都",
+      "addressCountry": "JP"
+    }
+  },
+  "event": {
+    "@type": "Event",
+    "name": "AdStep 皇居ラン定例会",
+    "description": "皇居外周 約5km の朝ラン＋カフェ",
+    "eventSchedule": {
+      "@type": "Schedule",
+      "byDay": "https://schema.org/Saturday",
+      "startTime": "07:00"
+    }
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;600;700&family=Yomogi&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<style>
+  :root {
+    --sky: #7CC6F0;
+    --sky-deep: #2D8FCE;
+    --sky-soft: #DDF0FA;
+    --sun: #FFD740;
+    --grass: #9DD4A0;
+    --ink: #1F2733;
+    --ink-dim: #6B7684;
+    --paper: #FBFEFF;
+    --line: #E6EEF3;
+    --f-display: 'Plus Jakarta Sans', sans-serif;
+    --f-sans: 'Zen Kaku Gothic New', 'Plus Jakarta Sans', sans-serif;
+    --f-mono: 'JetBrains Mono', monospace;
+    --f-hand: 'Caveat', 'Yomogi', cursive;
+    --f-hand-jp: 'Yomogi', 'Caveat', cursive;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background: var(--paper); color: var(--ink); font-family: var(--f-sans); font-size: 17px; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+  a { color: inherit; text-decoration: none; }
+  img { display:block; max-width:100%; }
+  ::selection { background: var(--sun); color: var(--ink); }
+
+  .container { width:100%; max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 720px) { .container { padding: 0 20px; } }
+
+  .mono { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; }
+  .hand { font-family: var(--f-hand); font-weight: 700; }
+  .hand-jp { font-family: var(--f-hand-jp); font-weight: 400; }
+  .section-eyebrow { font-family: var(--f-hand); font-weight: 700; font-size: clamp(36px, 3.6vw, 52px); color: var(--sky-deep); display: inline-block; transform: rotate(-2deg); margin-bottom: 12px; line-height: 1; }
+  .display { font-family: var(--f-display); font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+  .display-jp { font-family: var(--f-sans); font-weight: 900; letter-spacing: -0.01em; line-height: 1.1; }
+
+  /* anims */
+  @keyframes float-y { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+  @keyframes drift-x { 0%{transform:translateX(-15%)} 100%{transform:translateX(115%)} }
+  @keyframes bob { 0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-6px) rotate(2deg)} }
+  @keyframes pulse { 0%,100%{opacity:1; transform:scale(1)} 50%{opacity:.4; transform:scale(.85)} }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  @keyframes spin-slow { to { transform: rotate(360deg);} }
+  .float-y { animation: float-y 5s ease-in-out infinite; }
+  .bob { animation: bob 1.6s ease-in-out infinite; }
+  .pulse-dot { width: 8px; height: 8px; border-radius:50%; background: var(--sun); animation: pulse 1.6s infinite; }
+  .marquee-track { display:inline-flex; white-space:nowrap; animation: marquee 40s linear infinite; }
+  .spin-slow { animation: spin-slow 28s linear infinite; }
+  .reveal { opacity:0; transform: translateY(20px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+  .reveal.in { opacity:1; transform:none; }
+
+  .btn { display:inline-flex; align-items:center; gap:10px; padding:16px 28px; font-weight: 600; font-size: 15px; border-radius: 999px; transition: all .25s ease; }
+  .btn-primary { background: var(--ink); color: #fff; }
+  .btn-primary:hover { background: var(--sky-deep); transform: translateY(-2px); }
+  .btn-sun { background: var(--sun); color: var(--ink); }
+  .btn-sun:hover { transform: translateY(-2px); background: var(--ink); color: var(--sun); }
+  .btn-ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+  .btn-ghost:hover { border-color: var(--ink); }
+
+  .card { background:#fff; border-radius: 24px; border: 1px solid var(--line); transition: transform .35s ease, box-shadow .35s ease; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 18px 48px rgba(45,143,206,0.10); }
+
+  .tag { display:inline-flex; align-items:center; gap:6px; padding: 6px 12px; border-radius: 999px; background: #fff; border: 1px solid var(--line); font-size: 12px; font-weight: 500; color: var(--ink); }
+
+  /* Image placeholder — swap with real <img src> later */
+  .img-ph { position: relative; width:100%; height:100%; background: linear-gradient(135deg, var(--sky-soft) 0%, #fff 100%); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .img-ph::before { content: ''; position:absolute; inset:0; background-image: repeating-linear-gradient(135deg, transparent 0 18px, rgba(45,143,206,0.06) 18px 19px); }
+  .img-ph .img-ph-label { position:relative; z-index:2; font-family: var(--f-mono); font-size: 11px; color: var(--sky-deep); background: #fff; padding: 6px 12px; border-radius: 999px; border: 1px dashed var(--sky-deep); letter-spacing:0.05em; }
+  .img-ph.dark { background: linear-gradient(135deg, #1F2733 0%, #2D8FCE 100%); }
+  .img-ph.dark .img-ph-label { color:#fff; background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.4); }
+
+  header.nav { position: sticky; top: 0; z-index: 100; background: rgba(251,254,255,0.92); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+  .logo-img { height: 24px; width: auto; }
+
+  /* Sky scene helpers */
+  .scene { position: relative; border-radius: 32px; overflow: hidden;
+    background: linear-gradient(180deg, #BFE3F4 0%, #DDF0FA 60%, #F2FAFC 100%);
+  }
+  .ground { position:absolute; left:0; right:0; bottom:0; height:32%; background: linear-gradient(180deg, transparent, rgba(157,212,160,0.55) 30%, var(--grass)); }
+  .cloud { position: absolute; width: 120px; height: 30px; background:#fff; border-radius:999px; opacity:0.92; filter: drop-shadow(0 6px 14px rgba(45,143,206,0.10)); }
+  .cloud::before, .cloud::after { content:''; position:absolute; background:#fff; border-radius:999px; }
+  .cloud::before { width: 60px; height: 50px; top: -22px; left: 14px; }
+  .cloud::after  { width: 40px; height: 36px; top: -14px; right: 18px; }
+
+  .grid-3 { display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .grid-4 { display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  @media (max-width: 900px) {
+    .grid-3 { grid-template-columns: 1fr; }
+    .grid-4 { grid-template-columns: 1fr 1fr; }
+    .hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+  }
+
+  .section { padding: 120px 0; }
+  @media (max-width: 720px) {
+    .section { padding: 72px 0; }
+    .nav-links { display: none !important; }
+    .nav-cta { padding: 9px 16px !important; font-size: 12px !important; }
+    .hero-h1 { font-size: clamp(28px, 8.5vw, 44px) !important; }
+    .hero-hand { font-size: clamp(28px, 8vw, 40px) !important; }
+    .h2-big { font-size: clamp(28px, 8vw, 44px) !important; }
+    .h2-mid { font-size: clamp(26px, 7.6vw, 40px) !important; }
+    .h2-join { font-size: clamp(36px, 12vw, 64px) !important; }
+    .section-eyebrow { font-size: clamp(28px, 8vw, 40px) !important; }
+    .scene-frame { aspect-ratio: 4 / 5 !important; }
+    .row-grid { grid-template-columns: 70px 1fr !important; padding: 14px 16px !important; gap: 12px !important; }
+    .grid-4 { gap: 12px !important; }
+    .badge-tl { left: 8px !important; top: -10px !important; padding: 8px 12px !important; }
+    .badge-br { right: 8px !important; bottom: -10px !important; padding: 8px 12px !important; }
+    .footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .footer-bottom { flex-direction: column !important; align-items: flex-start !important; }
+    .tweak-panel { display: none !important; }
+  }
+
+  /* tweak panel */
+  .tweak-panel { position:fixed; right:18px; bottom:18px; z-index:999; background:#fff; border:1px solid var(--line); border-radius:16px; padding:14px; width:230px; font-family:var(--f-mono); font-size:11px; box-shadow: 0 24px 60px rgba(15,20,25,0.1); }
+  .tweak-panel .row { display:flex; justify-content: space-between; align-items: center; margin: 8px 0; }
+  .tweak-panel .swatches { display:flex; gap: 6px; }
+  .tweak-panel .sw { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--line); cursor: pointer; }
+  .tweak-panel .sw.on { border-color: var(--ink); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" data-presets="react">
+
+
+
+
+const { useState, useEffect } = React;
+
+const TWEAKS = /*EDITMODE-BEGIN*/{
+  "accent": "ocean"
+}/*EDITMODE-END*/;
+
+const ACCENTS = {
+  default: { sky: "#7CC6F0", deep: "#2D8FCE", soft: "#DDF0FA", sun: "#FFD740", grass: "#9DD4A0" },
+  ocean: { sky: "#5BBDF0", deep: "#1F7BB8", soft: "#CFE7F6", sun: "#FFC93C", grass: "#86C9A0" },
+  pastel: { sky: "#A4D8F1", deep: "#5BA3CC", soft: "#E5F2F9", sun: "#FFE07A", grass: "#B7DFB8" }
+};
+
+function useReveal() {
+  useEffect(() => {
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((es) => {
+      es.forEach((e) => {if (e.isIntersecting) {e.target.classList.add('in');io.unobserve(e.target);}});
+    }, { threshold: 0.12 });
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+}
+
+/* ---------- Runner illustration ---------- */
+function Runner({ size = 160, top = "#FFD740", bottom = "#1F2733", skin = "#F4D3B0", className = "" }) {
+  return (
+    <svg viewBox="0 0 200 240" width={size} height={size * 1.2} className={className} aria-hidden>
+      <ellipse cx="100" cy="225" rx="40" ry="4" fill="#1F2733" opacity="0.18" />
+      <path d="M88 150 C 78 175 60 198 50 215" stroke={skin} strokeWidth="13" strokeLinecap="round" fill="none" />
+      <path d="M44 215 L 62 215 L 60 222 L 42 222 Z" fill="#1F2733" />
+      <path d="M70 90 Q 100 72 130 80 L138 145 Q 120 156 95 156 L78 148 Z" fill={top} />
+      <path d="M82 145 L138 145 L132 175 L100 168 L86 175 Z" fill={bottom} />
+      <path d="M120 168 C 138 185 150 192 165 192" stroke={skin} strokeWidth="13" strokeLinecap="round" fill="none" />
+      <path d="M155 192 L175 195 L173 200 L155 200 Z" fill="#fff" stroke="#1F2733" strokeWidth="1.2" />
+      <circle cx="105" cy="58" r="20" fill={skin} />
+      <path d="M86 50 Q 96 36 116 40 Q 130 44 126 58 L 122 56 Q 112 44 96 50 Z" fill="#1F2733" />
+      <path d="M99 64 Q 105 68 111 64" stroke="#1F2733" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+      <circle cx="100" cy="56" r="1.4" fill="#1F2733" />
+      <circle cx="112" cy="56" r="1.4" fill="#1F2733" />
+      <path d="M76 100 C 60 120 55 138 50 130" stroke={skin} strokeWidth="11" strokeLinecap="round" fill="none" />
+      <path d="M125 95 C 145 88 158 78 160 60" stroke={skin} strokeWidth="11" strokeLinecap="round" fill="none" />
+    </svg>);
+
+}
+
+function InstagramGlyph() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
+    </svg>);
+
+}
+
+/* ---------- Image placeholder ---------- */
+function ImgPlaceholder({ label, ratio = '4/3', dark = false, style, src, objectPosition = 'center' }) {
+  return (
+    <div style={{ aspectRatio: ratio, borderRadius: 24, overflow: 'hidden', ...style }}>
+      {src ?
+        <img src={src} alt={label} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition, display: 'block' }} /> :
+        <div className={`img-ph ${dark ? 'dark' : ''}`}>
+          <span className="img-ph-label">📷 {label}</span>
+        </div>
+      }
+    </div>);
+
+}
+
+/* ---------- Nav ---------- */
+function Nav() {
+  return (
+    <header className="nav">
+      <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 72 }}>
+        <a href="#top" style={{ display: 'flex', alignItems: 'center' }}>
+          <img src="assets/adstep-logo-trim.png" alt="AdStep" className="logo-img" />
+        </a>
+        <nav style={{ display: 'flex', gap: 28, alignItems: 'center' }}>
+          <a href="#concept" className="mono nav-links" style={{ color: 'var(--ink-dim)', fontSize: 12 }}>CONCEPT</a>
+          <a href="#about" className="mono nav-links" style={{ color: 'var(--ink-dim)', fontSize: 12 }}>ABOUT</a>
+          <a href="#events" className="mono nav-links" style={{ color: 'var(--ink-dim)', fontSize: 12 }}>EVENTS</a>
+          <a href="#voices" className="mono nav-links" style={{ color: 'var(--ink-dim)', fontSize: 12 }}>VOICES</a>
+          <a href="#join" className="btn btn-primary nav-cta" style={{ padding: '10px 20px', fontSize: 13 }}>Join us →</a>
+        </nav>
+      </div>
+    </header>);
+
+}
+
+/* ---------- Hero ---------- */
+function Hero() {
+  return (
+    <section id="top" style={{ position: 'relative', paddingTop: 36, paddingBottom: 80 }}>
+      <div className="container">
+        <div className="hero-grid" style={{ display: 'grid', gridTemplateColumns: '1.05fr 1fr', gap: 56, alignItems: 'center' }}>
+          <div>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: 'var(--sky-soft)', color: 'var(--sky-deep)', padding: '8px 16px', borderRadius: 999, marginBottom: 28, fontSize: 12, fontWeight: 600 }}>
+              <span className="pulse-dot" style={{ background: 'var(--sky-deep)' }} />
+              毎週土曜の朝7時、皇居から
+            </div>
+            <div className="hero-hand hand" style={{ color: 'var(--sky-deep)', fontSize: 'clamp(36px, 4.4vw, 56px)', lineHeight: 1, marginBottom: 14, transform: 'rotate(-1.5deg)', display: 'inline-block' }}>
+              Run, Chat, <span style={{ color: 'var(--ink)' }}>Feel Refreshed.</span>
+            </div>
+            <h1 className="display-jp hero-h1" style={{ margin: 0, fontSize: "68px" }}>
+              走るたび、<br />
+              つながるたび、<br />
+              <span style={{ color: 'var(--sky-deep)' }}>元気</span>になる。
+            </h1>
+            <p style={{ fontSize: 19, lineHeight: 1.85, color: 'var(--ink-dim)', marginTop: 28, maxWidth: 520 }}>
+              <strong style={{ color: 'var(--ink)' }}>AdStep（アドステップ）</strong>は、毎週土曜の朝7時に皇居外周を走る<strong style={{ color: 'var(--ink)' }}>東京のランニングコミュニティ</strong>。初心者・社会人・大学生とさまざま。ひとり参加も、どなたでもウェルカム。
+            </p>
+            <div style={{ display: 'flex', gap: 12, marginTop: 36, flexWrap: 'wrap' }}>
+              <a href="#join" className="btn btn-primary"><InstagramGlyph /> Instagram で参加</a>
+              <a href="#about" className="btn btn-ghost">どんな会？</a>
+            </div>
+            <div style={{ display: 'flex', gap: 10, marginTop: 32, flexWrap: 'wrap' }}>
+              <span className="tag">🏃 皇居ラン 約5km</span>
+              <span className="tag">☕️ ラン後カフェ</span>
+              <span className="tag">🏆 マラソン参戦</span>
+              <span className="tag">🍻 懇親会</span>
+              <span className="tag">初心者OK</span>
+              <span className="tag">参加費無料</span>
+            </div>
+          </div>
+
+          {/* Hero photo */}
+          <div style={{ position: 'relative' }}>
+            <div style={{ aspectRatio: '4/5', borderRadius: 32, overflow: 'hidden', boxShadow: '0 24px 60px rgba(45,143,206,0.18)' }}>
+              <img src="assets/photos/gallery-group-day.jpeg" alt="AdStep メンバー · 皇居前で集合" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 40%', display: 'block' }} />
+            </div>
+
+            {/* Floating sticker badges */}
+            <div className="card float-y badge-tl" style={{ position: 'absolute', top: -14, left: -16, padding: '12px 18px', display: 'flex', gap: 10, alignItems: 'center', borderRadius: 999 }}>
+              <span style={{ fontSize: 20 }}>📍</span>
+              <div>
+                <div className="mono" style={{ color: 'var(--ink-dim)' }}>WHERE</div>
+                <div style={{ fontSize: 13, fontWeight: 700 }}>和田倉噴水公園</div>
+              </div>
+            </div>
+            <div className="card float-y badge-br" style={{ position: 'absolute', bottom: -12, right: -16, padding: '12px 18px', display: 'flex', gap: 10, alignItems: 'center', borderRadius: 999, animationDelay: '0.6s' }}>
+              <span style={{ fontSize: 20 }}>⏰</span>
+              <div>
+                <div className="mono" style={{ color: 'var(--ink-dim)' }}>WHEN</div>
+                <div style={{ fontSize: 13, fontWeight: 700 }}>SAT · 7:00 AM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Marquee */}
+      <div style={{ background: 'var(--sky-deep)', color: '#fff', padding: '16px 0', overflow: 'hidden', marginTop: 80 }}>
+        <div className="marquee-track">
+          {[...Array(8)].map((_, i) =>
+          <span key={i} style={{ padding: '0 24px', display: 'inline-flex', alignItems: 'center', gap: 16, fontFamily: 'var(--f-display)', fontWeight: 700, fontSize: 18 }}>
+              <span style={{ color: 'var(--sun)' }}>★</span>
+              ADSTEP RUNNING COMMUNITY
+              <span style={{ color: 'var(--sun)' }}>★</span>
+              SAT 7AM
+              <span style={{ color: 'var(--sun)' }}>★</span>
+              EVERYONE WELCOME
+            </span>
+          )}
+        </div>
+      </div>
+    </section>);
+
+}
+
+/* ---------- Concept ---------- */
+function Concept() {
+  return (
+    <section id="concept" className="section">
+      <div className="container">
+        <div style={{ textAlign: 'center', marginBottom: 64 }}>
+          <div className="section-eyebrow">Concept</div>
+          <h2 className="display-jp h2-big" style={{ fontSize: 'clamp(36px, 4.8vw, 64px)', margin: 0 }}>
+            走りたいも、つながりたいも、<br />
+            <span style={{ color: 'var(--sky-deep)' }}>ぜんぶOK。</span>
+          </h2>
+          <p style={{ fontSize: 18, color: 'var(--ink-dim)', maxWidth: 640, margin: '24px auto 0', lineHeight: 1.95 }}>
+            <strong style={{ color: 'var(--ink)' }}>皇居ラン</strong>を中心に、社会人や大学生がフラットに集まるサードプレイス。 ランニングをきっかけに、仕事や学業の枠を越えた仲間と出会える ランニングコミュニティです。
+          </p>
+        </div>
+        <div className="grid-3">
+          {[
+          { ic: '🏃', title: '初心者ウェルカム', body: '「走るのは久しぶり」「今日初めて」の方でも安心。自分のペースでOK、歩いてのゴールも問題ないです！' },
+          { ic: '💬', title: 'キャリアも、雑談も', body: '社会人とのキャリア諘から、ゆるい雑談まで。朝の空気の中、フラットに話せる関係性。' },
+          { ic: '🌿', title: '勧誘・営業ゼロ', body: 'マルチや勧誘、一切なし。「走る仲間がほしい」を安心して叶えられる場所。' }].
+          map((f, i) =>
+          <div key={i} className="card reveal" style={{ padding: 32, transitionDelay: `${i * 70}ms` }}>
+              <div style={{ width: 56, height: 56, borderRadius: 16, background: 'var(--sky-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, marginBottom: 20 }}>{f.ic}</div>
+              <h3 className="display-jp" style={{ fontSize: 22, margin: '0 0 12px', fontWeight: 800 }}>{f.title}</h3>
+              <p style={{ fontSize: 16, lineHeight: 1.85, color: 'var(--ink-dim)', margin: 0 }}>{f.body}</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>);
+
+}
+
+/* ---------- About ---------- */
+function About() {
+  return (
+    <section id="about" className="section" style={{ background: 'var(--sky-soft)' }}>
+      <div className="container">
+        <div style={{ display: 'grid', gridTemplateColumns: '1.05fr 1fr', gap: 64, alignItems: 'center' }} className="hero-grid">
+          <div>
+            <div className="section-eyebrow">About</div>
+            <h2 className="display-jp h2-big" style={{ fontSize: 'clamp(36px,4.8vw,64px)', margin: '0 0 28px' }}>
+              土曜の朝7時、<br />
+              皇居でお待ちしてます。
+            </h2>
+            <p style={{ fontSize: 18, lineHeight: 1.95, color: 'var(--ink-dim)', maxWidth: 520, margin: 0 }}>
+              集合は和田倉噴水公園のスタバックス前。皇居外周を<strong style={{ color: 'var(--ink)' }}>約5km・一周</strong>、走り終わったらそのままスタバでモーニングコーヒー。「トレーニングしたい」も「人と話したい」「出会いを求めて」もなんでもウェルカム。
+            </p>
+            <div style={{ marginTop: 36, display: 'grid', gap: 0, background: '#fff', border: '1px solid var(--line)', borderRadius: 16, overflow: 'hidden' }}>
+              <Row k="日時" v="毎週土曜日 AM 7:00 〜 8:30ごろ" />
+              <Row k="集合" v="スターバックス 皇居外苑 和田倉噴水公園店 前" />
+              <Row k="コース" v="皇居外周一周 約5km（アップダウンあり・自分のペースでOK）" />
+              <Row k="レベル" v="初心者〜中級者 · 走るのが初めてでも安心" />
+              <Row k="参加費" v="無料 / カフェ代は各自" />
+              <Row k="雨天時" v="小雨は決行 / 荒天時は前日 Instagram で告知" last />
+            </div>
+          </div>
+          <div style={{ position: 'relative' }}>
+            <div style={{ aspectRatio: '1/1', borderRadius: 32, overflow: 'hidden', boxShadow: '0 24px 60px rgba(45,143,206,0.16)' }}>
+              <img src="assets/photos/about-marunouchi.jpeg" alt="夕方の皇居前 · AdStep メンバー集合" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 60%', display: 'block' }} />
+            </div>
+            <div className="card float-y" style={{ position: 'absolute', top: -12, right: 24, padding: '10px 14px', display: 'flex', gap: 8, alignItems: 'center', borderRadius: 999 }}>
+              <span style={{ fontSize: 18 }}>🏃</span>
+              <span style={{ fontSize: 12, fontWeight: 700 }}>約 5km</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>);
+
+}
+
+function Row({ k, v, last }) {
+  return (
+    <div className="row-grid" style={{ display: 'grid', gridTemplateColumns: '90px 1fr', gap: 20, padding: '16px 22px', borderBottom: last ? 'none' : '1px solid var(--line)' }}>
+      <div className="mono" style={{ color: 'var(--ink-dim)' }}>{k}</div>
+      <div style={{ fontSize: 16, fontWeight: 500, lineHeight: 1.6 }}>{v}</div>
+    </div>);
+
+}
+
+/* ---------- Saturday timeline ---------- */
+function Timeline() {
+  const steps = [
+  { time: '06:55', t: '集合', d: 'スタバ前集合。AdStepのメンバーが待ってます。', ic: '☕️' },
+  { time: '07:00', t: 'スタート', d: '軽く自己紹介してから、皇居外周をスタート。約5km、自分のペースで。', ic: '🏃' },
+  { time: '07:35', t: 'ゴール', d: 'ストレッチして解散。ここで帰ってもOK。', ic: '🌟' },
+  { time: '07:45', t: 'カフェタイム', d: '希望者でスタバへ。コーヒー片手に、ゆるく話す時間。', ic: '☕️' }];
+
+  return (
+    <section className="section">
+      <div className="container">
+        <div style={{ textAlign: 'center', marginBottom: 64 }}>
+          <div className="section-eyebrow">A typical Saturday</div>
+          <h2 className="display-jp h2-mid" style={{ fontSize: 'clamp(34px,4.6vw,60px)', margin: 0 }}>こんな朝を、過ごします。</h2>
+        </div>
+        <div className="grid-4">
+          {steps.map((s, i) =>
+          <div key={i} className="card reveal" style={{ padding: 28, transitionDelay: `${i * 70}ms` }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
+                <span style={{ width: 44, height: 44, borderRadius: 12, background: 'var(--sky-soft)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 20 }}>{s.ic}</span>
+                <span className="mono" style={{ color: 'var(--ink-dim)' }}>{s.time}</span>
+              </div>
+              <div className="mono" style={{ color: 'var(--sky-deep)', marginBottom: 8 }}>{String(i + 1).padStart(2, '0')}</div>
+              <h3 className="display-jp" style={{ fontSize: 24, margin: '0 0 10px', fontWeight: 800 }}>{s.t}</h3>
+              <p style={{ fontSize: 15.5, lineHeight: 1.85, color: 'var(--ink-dim)', margin: 0 }}>{s.d}</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>);
+
+}
+
+/* ---------- Gallery (running shots) ---------- */
+function Gallery() {
+  const shots = [
+  { label: '皇居スタート', tilt: -2, src: 'assets/photos/event-weekly-run.jpeg', pos: 'center 30%' },
+  { label: '紅葉ラン', tilt: 1.5, src: 'assets/photos/gallery-autumn-run.jpeg', pos: 'center 30%' },
+  { label: '桜の下で', tilt: -1.5, src: 'assets/photos/hero-sakura.jpeg', pos: 'center 35%' },
+  { label: 'チームAdStep', tilt: 2, src: 'assets/photos/event-social-team.jpeg', pos: 'center 40%' },
+  { label: 'カフェタイム', tilt: -1, src: 'assets/photos/event-monthly-cafe.jpeg', pos: 'center center' }];
+
+  return (
+    <section id="gallery" className="section" style={{ paddingTop: 32, paddingBottom: 40 }}>
+      <div className="container">
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 32, flexWrap: 'wrap', gap: 16 }}>
+          <div>
+            <div className="section-eyebrow">Snapshots</div>
+            <h2 className="display-jp h2-mid" style={{ fontSize: 'clamp(30px,4vw,52px)', margin: 0 }}>朝の皇居、こんな感じ。</h2>
+          </div>
+          <p className="mono" style={{ color: 'var(--ink-dim)', maxWidth: 320, margin: 0, lineHeight: 1.7 }}>SCROLL → 　メンバーが撮った、いつもの朝のシーン。</p>
+        </div>
+      </div>
+      <div style={{ overflowX: 'auto', overflowY: 'visible', paddingBottom: 12, paddingTop: 8 }}>
+        <div style={{ display: 'flex', gap: 18, padding: '0 32px', minWidth: 'min-content' }}>
+          {shots.map((s, i) =>
+          <div key={i} style={{ flex: '0 0 auto', width: 'clamp(220px, 30vw, 320px)', transform: `rotate(${s.tilt}deg)`, transition: 'transform .35s ease' }}
+          onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(0deg) translateY(-6px)'}
+          onMouseLeave={(e) => e.currentTarget.style.transform = `rotate(${s.tilt}deg)`}>
+              <ImgPlaceholder label={s.label} src={s.src} objectPosition={s.pos} ratio="4/5" style={{ borderRadius: 18, boxShadow: '0 12px 32px rgba(45,143,206,0.10)' }} />
+              <div className="hand" style={{ marginTop: 10, color: 'var(--ink-dim)', fontSize: 22, textAlign: 'center' }}>{s.label}</div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>);
+
+}
+
+/* ---------- Events ---------- */
+function Events() {
+  const evs = [
+  {
+    tag: 'Weekly',
+    title: '皇居ラン 定例会',
+    when: '毎週土曜 · AM 7:00',
+    body: '皇居外周を一周、約5kmラン。予約不要、初参加もその場でOK。ゴール後はスタバでモーニングコーヒーをシェア。',
+    img: '朝のスタート',
+    src: 'assets/photos/event-weekly-run.jpeg',
+    pos: 'center 30%',
+    sun: false
+  },
+  {
+    tag: 'Monthly',
+    title: 'カフェ会 · ラン後交流',
+    when: '月１回 · ランとセット',
+    body: '走るだけじゃなくて、ちゃんと話せる時間も。キャリア諘、趣味の話、トレーニングの悩み・・・ゆっくり。',
+    img: 'カフェで一息',
+    src: 'assets/photos/event-monthly-cafe.jpeg',
+    pos: 'center 50%',
+    sun: false
+  },
+  {
+    tag: 'Seasonal',
+    title: 'マラソン大会 参戦',
+    when: '年数回 · チームAdStep',
+    body: 'スパルタンレース、フルマラソン、リレー大会など、シーズンごとに大会へ挑戦。仲間と一緒だから、走り切れる。',
+    img: 'マラソン大会',
+    src: 'assets/photos/event-marathon.jpeg',
+    pos: 'center 50%',
+    sun: true
+  },
+  {
+    tag: 'Social',
+    title: '懇親会 · 飲み会',
+    when: '季節ごと · 夜開催',
+    body: '年数回、夜も集う。ビアガーデン、焼肉、交換会スタイルなど、カジュアルに仲世ずり。走り以外の顔を見せあう、長い仲間になれる夜。',
+    img: '乾杯シーン',
+    src: 'assets/photos/event-social-team.jpeg',
+    pos: 'center 40%',
+    sun: false
+  }];
+
+  return (
+    <section id="events" className="section" style={{ background: '#fff' }}>
+      <div className="container">
+        <div style={{ textAlign: 'center', marginBottom: 56 }}>
+          <div className="section-eyebrow">Events</div>
+          <h2 className="display-jp h2-mid" style={{ fontSize: 'clamp(34px,4.6vw,60px)', margin: 0 }}>
+            走るだけじゃない、<br />
+            <span style={{ color: 'var(--sky-deep)' }}>仲間との時間。</span>
+          </h2>
+          <p style={{ fontSize: 18, color: 'var(--ink-dim)', maxWidth: 620, margin: '24px auto 0', lineHeight: 1.95 }}>
+            週毎の皇居ランを軸に、カフェ、マラソン参戦、夜の懇親会まで。走る仲間は、走らない時間も楽しい。
+          </p>
+        </div>
+        <div className="grid-4">
+          {evs.map((e, i) =>
+          <div key={i} className="card reveal" style={{ padding: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', transitionDelay: `${i * 70}ms` }}>
+              <ImgPlaceholder label={e.img} src={e.src} objectPosition={e.pos} ratio="4/3" dark={e.sun} style={{ borderRadius: 0 }} />
+              <div style={{ padding: '24px 26px 28px', display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
+                <div className="hand" style={{ color: 'var(--sky-deep)', fontSize: 28, lineHeight: 1, transform: 'rotate(-3deg)', display: 'inline-block' }}>{e.tag}</div>
+                <h3 className="display-jp" style={{ fontSize: 22, margin: 0, fontWeight: 800 }}>{e.title}</h3>
+                <div className="mono" style={{ color: 'var(--ink-dim)' }}>{e.when}</div>
+                <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--ink-dim)', margin: 0 }}>{e.body}</p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>);
+
+}
+
+/* ---------- Voices ---------- */
+function Voices() {
+  const items = [
+  { q: '会社と家を往復するだけの毎日だったけど、土曜の朝だけは違う。人生に色がついた感覚。', n: 'ゆうき', meta: '24歳 · 会社員' },
+  { q: '社会人の方とキャリアの話をさせてもらえて、視野が広がりました。勧誘も一切なくて安心。', n: 'みお', meta: '21歳 · 大学生' },
+  { q: '走らずカフェだけ参加もOKな空気感が好き。初マラソンも仲間と走れたのが嘘みたい。', n: 'けんた', meta: '26歳 · エンジニア' }];
+
+  return (
+    <section id="voices" className="section" style={{ background: 'var(--sky-soft)' }}>
+      <div className="container">
+        <div style={{ textAlign: 'center', marginBottom: 56 }}>
+          <div className="section-eyebrow">Voices</div>
+          <h2 className="display-jp h2-mid" style={{ fontSize: 'clamp(34px,4.6vw,60px)', margin: 0 }}>参加した、みんなの声。</h2>
+        </div>
+        <div className="grid-3">
+          {items.map((v, i) =>
+          <div key={i} className="card reveal" style={{ padding: 32, display: 'flex', flexDirection: 'column', gap: 20, transitionDelay: `${i * 70}ms` }}>
+              <div style={{ fontSize: 48, lineHeight: 0.6, color: 'var(--sky-deep)', fontFamily: 'serif' }}>
+</div>
+              <p style={{ fontSize: 16, lineHeight: 1.8, fontWeight: 500, margin: 0, flex: 1 }}>{v.q}</p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--sky-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}>🙂</div>
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: 15 }}>{v.n}</div>
+                  <div className="mono" style={{ color: 'var(--ink-dim)' }}>{v.meta}</div>
+                </div>
+              </div>
+            </div>)}
+        </div>
+      </div>
+    </section>);
+
+}
+
+/* ---------- Join CTA ---------- */
+function Join() {
+  return (
+    <section id="join" className="section" style={{ position: 'relative', overflow: 'hidden', background: 'linear-gradient(180deg, #BFE3F4 0%, var(--sky-soft) 100%)' }}>
+      {/* clouds */}
+      <div className="cloud" style={{ top: '14%', left: '-10%', animation: 'drift-x 70s linear infinite' }} />
+      <div className="cloud" style={{ top: '40%', right: '-12%', animation: 'drift-x 90s linear infinite reverse', transform: 'scale(0.8)' }} />
+      <div className="container" style={{ position: 'relative', textAlign: 'center' }}>
+        <div className="section-eyebrow" style={{ fontSize: 'clamp(32px, 3.6vw, 48px)' }}>Join us</div>
+        <h2 className="display-jp h2-join" style={{ fontSize: 'clamp(40px, 7vw, 112px)', margin: '0 0 24px' }}>
+          新メンバー、<br />
+          <span style={{ color: 'var(--sky-deep)' }}>大募集中。</span>
+        </h2>
+        <p style={{ fontSize: 19, lineHeight: 1.85, maxWidth: 580, margin: '0 auto 40px', color: 'var(--ink)' }}>
+          参加・質問は Instagram の DM から。<br />
+          まずは「行ってみたいです」のひとことで OK！
+        </p>
+        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <a href="https://instagram.com/" target="_blank" rel="noreferrer" className="btn btn-sun" style={{ padding: '18px 28px', fontSize: 15 }}>
+            <InstagramGlyph /> Instagram を見る
+          </a>
+          <a href="https://instagram.com/" target="_blank" rel="noreferrer" className="btn btn-primary" style={{ padding: '18px 28px', fontSize: 15 }}>
+            ✉️ DM で問い合わせる
+          </a>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-end', marginTop: 64 }}>
+          <div className="bob"><Runner size={110} top="var(--sun)" bottom="#1F2733" /></div>
+          <div className="bob" style={{ marginLeft: -16, animationDelay: '0.3s' }}><Runner size={110} top="#fff" bottom="var(--sky-deep)" skin="#E8C094" /></div>
+          <div className="bob" style={{ marginLeft: -16, animationDelay: '0.6s' }}><Runner size={110} top="var(--sky)" bottom="#1F2733" /></div>
+        </div>
+      </div>
+    </section>);
+
+}
+
+/* ---------- Founder ---------- */
+function Founder() {
+  return (
+    <section className="section" style={{ background: '#fff' }}>
+      <div className="container">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: 56, alignItems: 'center' }} className="hero-grid">
+          <div style={{ aspectRatio: '1/1', borderRadius: 28, overflow: 'hidden', maxWidth: 360, margin: '0 auto', boxShadow: '0 24px 60px rgba(45,143,206,0.18)' }}>
+            <img src="assets/photos/founder-spartan.jpeg" alt="堀内 真央 Mao Horiuchi" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }} />
+          </div>
+          <div>
+            <div className="section-eyebrow">Founder</div>
+            <h2 className="display-jp h2-mid" style={{ fontSize: 'clamp(32px,4vw,48px)', margin: '0 0 28px', fontWeight: 900 }}>
+              堀内 真央 <span style={{ color: 'var(--ink-dim)', fontWeight: 500, fontSize: '0.7em' }}>Mao Horiuchi</span>
+            </h2>
+            <p style={{ fontSize: 17, lineHeight: 1.95, color: 'var(--ink)', maxWidth: 560, margin: 0 }}>
+              「走る人、走りたい人、ただ朝に会いたい人」が同じ場所でゆるくつながる、サードプレイスをつくりたくて、AdStep を始めました。
+              <br /><br />
+              社会人になっても、大学生でも、走るのが初めてでも、誰でも歓迎。土曜の朝、皇居でお待ちしてます。
+            </p>
+            <div style={{ display: 'flex', gap: 12, marginTop: 28 }}>
+              <a href="https://instagram.com/" className="btn btn-primary"><InstagramGlyph /> Instagram</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>);
+
+}
+
+/* ---------- Footer ---------- */
+function Footer() {
+  return (
+    <footer style={{ background: 'var(--paper)', borderTop: '1px solid var(--line)', padding: '56px 0 28px' }}>
+      <div className="container">
+        <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr', gap: 36, marginBottom: 48 }} className="footer-grid">
+          <div>
+            <img src="assets/adstep-logo-trim.png" alt="AdStep" style={{ height: 26, width: 'auto', marginBottom: 18 }} />
+            <p style={{ color: 'var(--ink-dim)', fontSize: 15, lineHeight: 1.85, maxWidth: 340, margin: 0 }}>
+              毎週土曜の朝7時、皇居から走りはじめる東京のランニングコミュニティ。初心者・社会人・大学生、ひとり参加も、どなたもふらっと参加OK。
+            </p>
+          </div>
+          <div>
+            <div className="mono" style={{ color: 'var(--ink-dim)', marginBottom: 14 }}>MENU</div>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <li><a href="#concept">Concept</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#events">Events</a></li>
+              <li><a href="#voices">Voices</a></li>
+              <li><a href="#join">Join us</a></li>
+            </ul>
+          </div>
+          <div>
+            <div className="mono" style={{ color: 'var(--ink-dim)', marginBottom: 14 }}>LOCATION</div>
+            <p style={{ fontSize: 15, lineHeight: 1.85, margin: 0 }}>
+              スターバックスコーヒー<br />
+              皇居外苑 和田倉噴水公園店 前<br />
+              <span style={{ color: 'var(--ink-dim)', fontSize: 12 }}>東京都千代田区皇居外苑3</span>
+            </p>
+          </div>
+        </div>
+        <div className="footer-bottom" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--line)', paddingTop: 20, flexWrap: 'wrap', gap: 12 }}>
+          <div className="mono" style={{ color: 'var(--ink-dim)' }}>© 2026 AdStep — Tokyo Running Community</div>
+          <div className="mono" style={{ color: 'var(--ink-dim)', display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span className="pulse-dot" />今週土曜、開催予定
+          </div>
+        </div>
+      </div>
+    </footer>);
+
+}
+
+/* ---------- Tweaks ---------- */
+function TweaksPanel({ state, setState, visible }) {
+  if (!visible) return null;
+  return (
+    <div className="tweak-panel">
+      <div className="row"><span style={{ color: 'var(--ink-dim)' }}>PALETTE</span></div>
+      <div className="row">
+        <span>Color</span>
+        <div className="swatches">
+          {Object.entries(ACCENTS).map(([k, v]) =>
+          <button key={k} className={`sw ${state.accent === k ? 'on' : ''}`}
+          style={{ background: `linear-gradient(135deg, ${v.sky} 50%, ${v.sun} 50%)` }}
+          onClick={() => setState((s) => ({ ...s, accent: k }))} />
+          )}
+        </div>
+      </div>
+    </div>);
+
+}
+
+/* ---------- App ---------- */
+function App() {
+  const [state, setState] = useState(TWEAKS);
+  const [tweaksOn, setTweaksOn] = useState(false);
+  useReveal();
+
+  useEffect(() => {
+    const a = ACCENTS[state.accent] || ACCENTS.default;
+    document.documentElement.style.setProperty('--sky', a.sky);
+    document.documentElement.style.setProperty('--sky-deep', a.deep);
+    document.documentElement.style.setProperty('--sky-soft', a.soft);
+    document.documentElement.style.setProperty('--sun', a.sun);
+    document.documentElement.style.setProperty('--grass', a.grass);
+  }, [state]);
+
+  useEffect(() => {
+    const onMsg = (e) => {
+      const d = e.data || {};
+      if (d.type === '__activate_edit_mode') setTweaksOn(true);
+      if (d.type === '__deactivate_edit_mode') setTweaksOn(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+
+  useEffect(() => {
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: state }, '*');
+  }, [state]);
+
+  return (
+    <div data-screen-label="AdStep Site">
+      <Nav />
+      <Hero />
+      <Concept />
+      <About />
+      <Timeline />
+      <Gallery />
+      <Events />
+      <Voices />
+      <Join />
+      <Founder />
+      <Footer />
+      <TweaksPanel state={state} setState={setState} visible={tweaksOn} />
+    </div>);
+
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

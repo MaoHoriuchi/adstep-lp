@@ -492,8 +492,9 @@ function Gallery() {
   { label: '皇居スタート', tilt: -2, src: 'assets/photos/event-weekly-run.jpeg', pos: 'center 30%' },
   { label: '紅葉ラン', tilt: 1.5, src: 'assets/photos/gallery-autumn-run.jpeg', pos: 'center 30%' },
   { label: '桜の下で', tilt: -1.5, src: 'assets/photos/hero-sakura.jpeg', pos: 'center 35%' },
-  { label: 'チームAdStep', tilt: 2, src: 'assets/photos/event-social-team.jpeg', pos: 'center 40%' },
-  { label: 'カフェタイム', tilt: -1, src: 'assets/photos/event-monthly-cafe.jpeg', pos: 'center center' }];
+  { label: '懇親会で大集合', tilt: 2, src: 'assets/photos/social-big-group.jpeg', pos: 'center 60%' },
+  { label: 'カフェタイム', tilt: -1, src: 'assets/photos/event-monthly-cafe.jpeg', pos: 'center center' },
+  { label: 'みんなで準備', tilt: 1.5, src: 'assets/photos/social-kitchen.jpeg', pos: 'center 70%' }];
 
   return (
     <section id="gallery" className="section" style={{ paddingTop: 32, paddingBottom: 40 }}>
@@ -503,7 +504,7 @@ function Gallery() {
             <div className="section-eyebrow">Snapshots</div>
             <h2 className="display-jp h2-mid" style={{ fontSize: 'clamp(30px,4vw,52px)', margin: 0 }}>朝の皇居、こんな感じ。</h2>
           </div>
-          <p className="mono" style={{ color: 'var(--ink-dim)', maxWidth: 320, margin: 0, lineHeight: 1.7 }}>SCROLL → 　メンバーが撮った、いつもの朝のシーン。</p>
+          <p className="mono" style={{ color: 'var(--ink-dim)', maxWidth: 320, margin: 0, lineHeight: 1.7 }}>SCROLL → 　メンバーが撮った、朝ランから懇親会まで。</p>
         </div>
       </div>
       <div style={{ overflowX: 'auto', overflowY: 'visible', paddingBottom: 12, paddingTop: 8 }}>
@@ -560,9 +561,9 @@ function Events() {
     title: '懇親会 · 飲み会',
     when: '季節ごと · 夜開催',
     body: '定期的に開催。ビアガーデン、焼肉、交換会スタイルなど、カジュアルにご飯会。走り以外の顔を見せあう、長い仲間になれる夜。',
-    img: '乾杯シーン',
-    src: 'assets/photos/event-social-team.jpeg',
-    pos: 'center 40%',
+    img: '懇親会の集合写真',
+    src: 'assets/photos/social-party.jpeg',
+    pos: 'center 55%',
     sun: false
   }];
 
@@ -666,22 +667,22 @@ function Join() {
 
 }
 
-/* ---------- Founder ---------- */
+/* ---------- Team ---------- */
 function Founder() {
   return (
     <section className="section" style={{ background: '#fff' }}>
       <div className="container">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: 56, alignItems: 'center' }} className="hero-grid">
-          <div style={{ aspectRatio: '1/1', borderRadius: 28, overflow: 'hidden', maxWidth: 360, margin: '0 auto', boxShadow: '0 24px 60px rgba(45,143,206,0.18)' }}>
-            <img src="assets/photos/founder-spartan.jpeg" alt="堀内 真央 Mao Horiuchi" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }} />
+          <div style={{ aspectRatio: '4/5', borderRadius: 28, overflow: 'hidden', maxWidth: 380, margin: '0 auto', boxShadow: '0 24px 60px rgba(45,143,206,0.18)' }}>
+            <img src="assets/photos/event-social-team.jpeg" alt="AdStep 運営メンバー" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 70%', display: 'block' }} />
           </div>
           <div>
-            <div className="section-eyebrow">Founder</div>
+            <div className="section-eyebrow">Team</div>
             <h2 className="display-jp h2-mid" style={{ fontSize: 'clamp(32px,4vw,48px)', margin: '0 0 28px', fontWeight: 900 }}>
-              堀内 真央 <span style={{ color: 'var(--ink-dim)', fontWeight: 500, fontSize: '0.7em' }}>Mao Horiuchi</span>
+              AdStep 運営一同
             </h2>
             <p style={{ fontSize: 17, lineHeight: 1.95, color: 'var(--ink)', maxWidth: 560, margin: 0 }}>
-              「走りたい人、ただ朝活をしたい人、新たな繋がりが欲しい人」が同じ場所でゆるくつながる、サードプレイスを作りたくて、AdStepを始めました。
+              「走りたい人、ただ朝活をしたい人、新たな繋がりが欲しい人」が同じ場所でゆるくつながる、サードプレイスを作りたくて、私たちはAdStepを運営しています。
               <br /><br />
               社会人になっても、大学生でも、走るのが初めてでも、誰でも歓迎。土曜の朝、皇居でお待ちしてます。
             </p>
